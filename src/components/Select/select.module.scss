@@ -1,0 +1,78 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  width: 20em;
+  min-height: 1.5em;
+  border-color: 0.05em solid #777;
+  background-color: rgb(134, 134, 199);
+  border-radius: 0.2em;
+  padding: 0.25em;
+  outline: none;
+}
+
+.value {
+  flex-grow: 1;
+}
+
+.clear-btn {
+  background: none;
+  color: #777;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.25em;
+
+  :focus,
+  :hover {
+    color: #333;
+  }
+}
+
+.divider {
+  background-color: #777;
+  align-self: stretch;
+  width: 0.05em;
+}
+
+.caret {
+  border: 0.25em solid transparent;
+  border-top-color: #777;
+  translate: 0 25%;
+}
+
+.options {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  // display: none;
+  max-height: 10em;
+  width: 100%;
+  overflow-y: auto;
+  border: 0.05em solid #777;
+  border-radius: 0.2em;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.25em);
+  background-color: white;
+  z-index: 100;
+
+  .show {
+    display: block;
+  }
+}
+
+.option {
+  padding: 0.25em;
+  cursor: pointer;
+
+  .highlighted {
+    background-color: red;
+  }
+
+  .selected {
+    background-color: green;
+  }
+}
