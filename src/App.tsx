@@ -1,5 +1,6 @@
 import { Select } from "./components/Select";
 import style from "./app.module.scss";
+import { useState } from "react";
 
 const optionsDumy = [
   {
@@ -21,9 +22,19 @@ const optionsDumy = [
 ];
 
 function App() {
+  const [value, setValue] = useState<typeof optionsDumy[0] | undefined>(
+    optionsDumy[0]
+  );
+
   return (
     <div className={style.container}>
-      <Select options={optionsDumy} />
+      <Select
+        options={optionsDumy}
+        value={value}
+        onChange={(option) => {
+          setValue(option);
+        }}
+      />
     </div>
   );
 }

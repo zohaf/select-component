@@ -3,13 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5em;
+  gap: 0.7em;
   width: 20em;
   min-height: 1.5em;
-  border-color: 0.05em solid #777;
-  background-color: rgb(134, 134, 199);
-  border-radius: 0.2em;
-  padding: 0.25em;
+  border: 0.05em solid rgb(45, 45, 45);
+  border-radius: 0.5em;
+  padding: 0.6em;
   outline: none;
 }
 
@@ -47,7 +46,7 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  // display: none;
+  display: none;
   max-height: 10em;
   width: 100%;
   overflow-y: auto;
@@ -58,21 +57,20 @@
   top: calc(100% + 0.25em);
   background-color: white;
   z-index: 100;
+}
 
-  .show {
-    display: block;
-  }
+.showOptions {
+  display: block;
 }
 
 .option {
   padding: 0.25em;
   cursor: pointer;
+}
 
-  .highlighted {
-    background-color: red;
-  }
-
-  .selected {
-    background-color: green;
-  }
+.selected {
+  background-color: rgba(148, 148, 235, 0.796);
+}
+.highlighted {
+  background-color: rgba(199, 199, 235, 0.638);
 }

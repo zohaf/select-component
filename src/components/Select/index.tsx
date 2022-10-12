@@ -1,7 +1,8 @@
-import style from "./select.module.scss";
+import { useEffect, useState } from "react";
+import styles from "./select.module.scss";
 
 type SelectOption = {
-  value: any;
+  value: string | number;
   label: string;
 };
 
@@ -12,15 +13,53 @@ type SelectProps = {
 };
 
 export function Select({ value, onChange, options }: SelectProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+
+  useEffect(() => {
+    isOpen && setHighlightedIndex(0);
+  }, [isOpen]);
+
+  const clearOptions = (e: any) => {
+    e.stopPropagation();
+    onChange(undefined);
+  };
+
+  const selectOption = (option: SelectOption) => {
+    if (option !== value) onChange(option);
+  };
+
+  const isSelectedOption = (option: SelectOption) => {
+    return value === option;
+  };
+
   return (
-    <div tabIndex={0} className={style.container}>
-      <span className={style.value}>value</span>
-      <button className={style["clear-btn"]}>&times;</button>
-      <div className={style.divider}></div>
-      <div className={style.caret}></div>
-      <ul className={`${style.options} ${style.show}`}>
-        {options.map((option) => (
-          <li className={style.option} key={option.value}>
+    <div
+      onBlur={() => setIsOpen(false)}
+      onClick={() => setIsOpen((prev) => !prev)}
+      tabIndex={0}
+      className={styles.container}
+    >
+      <span className={styles.value}>{value?.label}</span>
+      <button onClick={(e) => clearOptions(e)} className={styles["clear-btn"]}>
+        &times;
+      </button>
+      <div className={styles.divider}></div>
+      <div className={styles.caret}></div>
+      <ul className={`${styles.options} ${isOpen ? styles.showOptions : ""}`}>
+        {options.map((option, index) => (
+          <li
+            onMouseEnter={() => setHighlightedIndex(index)}
+            onClick={(e) => {
+              e.stopPropagation();
+              selectOption(option);
+              setIsOpen(false);
+            }}
+            className={`${styles.option} ${
+              isSelectedOption(option) ? styles.selected : ""
+            } ${index === highlightedIndex ? styles.highlighted : ""}`}
+            key={option.value}
+          >
             {option.label}
           </li>
         ))}
